@@ -49,11 +49,11 @@ public class RestTemplateTests {
     public void testGet_product1() {
         String url = "http://localhost:8080/product/get_product1";
         String result = restTemplate.getForObject(url, String.class);
-        System.out.println("get_product1返回结果返回String类型：" + result);
+        System.out.println("get_product1返回结果->返回String类型：" + result);
         Assert.hasText(result, "get_product1返回结果为空");
 
         Product product = restTemplate.getForObject(url, Product.class);
-        System.out.println("get_product1返回结果返回原有的类型：" + product);
+        System.out.println("get_product1返回结果->返回对象：" + product);
         Assert.notNull(product, "get_product1返回结果为空");
 
         ResponseEntity<Product> responseEntity = restTemplate.getForEntity(url, Product.class);
@@ -79,6 +79,9 @@ public class RestTemplateTests {
         Assert.hasText(executeResult, "get_product1返回结果为空");
     }
 
+    /**
+     * 路径携带参数的请求方式  通过map维护了pathvariable的值
+     */
     @Test
     public void testGet_product2() {
         String url = "http://localhost:8080/product/get_product2?id={id}";
@@ -94,6 +97,9 @@ public class RestTemplateTests {
         Assert.notNull(result.getId(), "get_product2  传递参数不成功");
     }
 
+    /**
+     * 请求的接口接受参数是一个对象  没有requestbody注解，请求的 HttpEntity对象里面是一个map或者是一个字符串
+     */
     @Test
     public void testPost_product1() {
         String url = "http://localhost:8080/product/post_product1";
@@ -116,6 +122,9 @@ public class RestTemplateTests {
         Assert.isTrue(exchangeResult.getStatusCode().equals(HttpStatus.OK), "post_product1 请求不成功");
     }
 
+    /**
+     * 接口接受参数为post并且接口里标有requestbody  HttpEntity中传递接受接口中对应的实体类
+     */
     @Test
     public void testPost_product2() {
         String url = "http://localhost:8080/product/post_product2";
