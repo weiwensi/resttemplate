@@ -16,10 +16,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-//@Component
+/**
+ * 暂时无用
+ */
+
 public class RestTemplateUtil {
 
-  //  @Autowired
     private RestTemplate restTemplate;
 
     /**
