@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.one.learn.resttemplate.mapper.UserMapper" >
-    <insert id="insert" parameterType="com.one.learn.resttemplate.bean.User" >
-        insert into TEST_USER (id,name,age) values (#{id}, #{name},#{age})
+<mapper namespace="com.one.learn.resttemplate.mapper.UserMapper">
+    <insert id="insert" parameterType="com.one.learn.resttemplate.bean.User">
+        insert into TEST_USER (id, name, age)
+        values (#{id}, #{name}, #{age})
     </insert>
+
+    <resultMap id="userDtoResultMap" type="com.one.learn.resttemplate.bean.UserJobDto">
+        <id property="id" column="ID" javaType="int" jdbcType="BIGINT"/>
+        <result property="name" column="NAME" javaType="String" jdbcType="VARCHAR"/>
+        <result property="age" column="AGE" javaType="int" jdbcType="BIGINT"/>
+        <result property="job" column="JOB" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getUserJobDtoByUserId" resultMap="userDtoResultMap">
+        select TEST_USER.id, TEST_USER.name, TEST_USER.age, TEST_USER_JOB.job
+        from TEST_USER
+                 inner join TEST_USER_JOB on TEST_USER.ID = TEST_USER_JOB.USER_ID
+        where TEST_USER.id = #{id}
+    </select>
+
 </mapper>
