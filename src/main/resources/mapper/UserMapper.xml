@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.one.learn.resttemplate.mapper.UserMapper" >
+    <insert id="insert" parameterType="com.one.learn.resttemplate.bean.User" >
+        insert into TEST_USER (id,name,age) values (#{id}, #{name},#{age})
+    </insert>
+</mapper>
