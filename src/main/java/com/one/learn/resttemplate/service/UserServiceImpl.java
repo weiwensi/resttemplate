@@ -3,11 +3,10 @@ package com.one.learn.resttemplate.service;
 import com.one.learn.resttemplate.bean.User;
 import com.one.learn.resttemplate.bean.UserJobDto;
 import com.one.learn.resttemplate.mapper.UserMapper;
-import org.apache.ibatis.session.RowBounds;
+import com.one.learn.resttemplate.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,17 +37,14 @@ public class UserServiceImpl implements UserService {
         //查询总条数
         Integer total = userMapper.queryCountUser();
 
-        //返回结果集
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("total", total);
-        //总页数
-        int totalpage = (total + pageSize - 1) / pageSize;
-        resultMap.put("totalpage", totalpage);
-        //数据的起始行
-        int offset = (pageNo - 1) * pageSize;
-        RowBounds rowbounds = new RowBounds(offset, pageSize);
+
         //用户数据集合
-        List<Map<String, Object>> userList = userMapper.queryUserList(rowbounds);
+        List<Map<String, Object>> userList = userMapper.queryUserList(PageUtil.getRowBounds(pageNo,pageSize,total));
+        //返回list
+        List<UserJobDto> userJobDtos = userMapper.queryUserList2(PageUtil.getRowBounds(pageNo,pageSize,total));
+        System.out.println(userJobDtos);
+        //返回Map
+
         return userList;
     }
 }

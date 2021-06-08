@@ -20,4 +20,7 @@ public interface UserMapper {
      * @return
      */
     List<Map<String, Object>> queryUserList(RowBounds rowbounds);
+
+    List<UserJobDto> queryUserList2(RowBounds rowbounds);
+
 }
