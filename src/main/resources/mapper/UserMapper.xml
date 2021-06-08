@@ -20,4 +20,13 @@
         where TEST_USER.id = #{id}
     </select>
 
+
+    <select id="queryCountUser"  resultType="java.lang.Integer">
+        select count (*) from TEST_USER
+    </select>
+
+    <select id="queryUserList" resultType="java.util.Map">
+        select * from user
+    </select>
+
 </mapper>

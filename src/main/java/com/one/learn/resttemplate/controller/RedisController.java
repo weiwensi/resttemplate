@@ -16,7 +16,7 @@ public class RedisController {
 
     @GetMapping("/testDistributedLock")
     public String testSetIfNotExists(@RequestParam("name") String name,
-                                     @RequestParam("value") int age){
+                                     @RequestParam("value") int age) {
         log.info("******testSetIfNotExists******");
 
         int time = 10;//超时时间写死为10秒
@@ -25,7 +25,11 @@ public class RedisController {
 
         log.info("******s是否为null:" + (s == null));
         log.info("******s=" + s);
-
         return s;
+    }
+
+    @GetMapping("testRedisPageQuery")
+    public String testRedisPageQuery() {
+        return "";
     }
 }

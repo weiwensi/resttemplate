@@ -3,8 +3,9 @@ package com.one.learn.resttemplate.controller;
 import com.one.learn.resttemplate.bean.GetParam;
 import com.one.learn.resttemplate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,5 +27,11 @@ public class UserController {
     @PostMapping("getUserJobDtoByUserId")
     public String getUserJobDtoByUserId(@RequestBody GetParam param) {
         return userService.getUserJobDtoByUserId(param.getId());
+    }
+
+    @GetMapping("pageQuery")
+    public List pageQuery(@RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        return userService.pageQuery(pageNo, pageSize);
+
     }
 }

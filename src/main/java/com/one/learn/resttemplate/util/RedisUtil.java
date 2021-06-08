@@ -96,6 +96,27 @@ public class RedisUtil {
             jedis.close();
         }
     }
+    /**
+     * 根据 list的 key
+     * 返回 list的 长度
+     *
+     * @param key
+     * @return
+     */
+    public Long length(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+           return jedis.llen(key);
+        } catch (Exception e) {
+            return 0L;
+        } finally {
+            jedis.close();
+        }
+    }
+
+
+
 
 
 }
