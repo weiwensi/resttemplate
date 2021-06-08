@@ -44,7 +44,8 @@ public class UserServiceImpl implements UserService {
         List<UserJobDto> userJobDtos = userMapper.queryUserList2(PageUtil.getRowBounds(pageNo,pageSize,total));
         System.out.println(userJobDtos);
         //返回Map
-
+        Map<Integer,UserJobDto>  userJobDtoMap=userMapper.getUserPoMap(PageUtil.getRowBounds(pageNo,pageSize,total));
+        System.out.println(userJobDtoMap);
         return userList;
     }
 }

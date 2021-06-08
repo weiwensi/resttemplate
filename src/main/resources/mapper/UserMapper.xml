@@ -31,7 +31,9 @@
     <select id="queryUserList2" resultMap="userDtoResultMap">
         select * from TEST_USER
     </select>
-
+    <select id="getUserPoMap" resultType="java.util.Map">
+        select * from TEST_USER
+    </select>
 
 
 </mapper>
