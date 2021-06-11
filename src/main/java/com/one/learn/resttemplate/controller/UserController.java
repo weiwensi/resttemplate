@@ -25,7 +25,8 @@ public class UserController {
     }
 
     @PostMapping("getUserJobDtoByUserId")
-    public String getUserJobDtoByUserId(@RequestBody GetParam param) {
+    public String getUserJobDtoByUserId(GetParam param) {
+        System.out.println("进入了Controller，参数"+param.getId());
         return userService.getUserJobDtoByUserId(param.getId());
     }
 
