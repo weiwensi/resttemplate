@@ -35,4 +35,8 @@ public class UserController {
         return userService.pageQuery(pageNo, pageSize);
 
     }
+    @GetMapping("testTran")
+    public   String   testTran(){
+        return userService.testTran();
+    }
 }

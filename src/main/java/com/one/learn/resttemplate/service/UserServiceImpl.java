@@ -4,14 +4,17 @@ import com.one.learn.resttemplate.bean.User;
 import com.one.learn.resttemplate.bean.UserJobDto;
 import com.one.learn.resttemplate.mapper.UserMapper;
 import com.one.learn.resttemplate.util.PageUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
@@ -47,5 +50,19 @@ public class UserServiceImpl implements UserService {
         Map<Integer,UserJobDto>  userJobDtoMap=userMapper.getUserPoMap(PageUtil.getRowBounds(pageNo,pageSize,total));
         System.out.println(userJobDtoMap);
         return userList;
+    }
+
+    @Override
+    @Transactional
+    public String testTran() {
+        User s = new User(12, "s", 15);
+        userMapper.insert(s);
+        try {
+            userMapper.insert(new User(13,"11111111111111",20));
+        }catch (Exception e){
+            System.out.println("异常了");
+        log.error("异常了"+e.getMessage());
+        }
+        return "ok";
     }
 }

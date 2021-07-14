@@ -8,4 +8,7 @@ public interface UserService {
     String getUserJobDtoByUserId(Integer id);
 
     List pageQuery(Integer pageNo, Integer pageSize);
+
+
+    String   testTran();
 }
